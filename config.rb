@@ -50,6 +50,11 @@ set :images_dir, 'images'
 set :slim, { pretty: true, sort_attrs: false, format: :html }
 Tilt::CoffeeScriptTemplate.default_bare = true
 
+#deploy
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = 'gh-pages'
+end
 
 configure :build do
   # activate :minify_css

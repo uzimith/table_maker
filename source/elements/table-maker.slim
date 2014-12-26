@@ -1,0 +1,53 @@
+link rel="import" href="/components/polymer/polymer.html"
+link rel="import" href="/components/polymer/polymer.html"
+link rel="import" href="/components/core-icon-button/core-icon-button.html"
+link rel="import" href="/components/paper-input/paper-input.html"
+link rel="import" href="../components/paper-input/paper-input-decorator.html"
+link rel="import" href="../components/paper-input/paper-autogrow-textarea.html"
+
+polymer-element name="table-maker" attirbutes="state"
+  template
+    sass:
+      \:host
+        width: 100%
+
+      paper-input
+        margin: 0 5px
+    div[hidden?="{{state != 'edit'}}"]
+      core-icon-button icon="add-circle" on-tap="{{addTask}}"
+      template repeat="{{task,index in tasks}}"
+        #layout[layout horizontal end]
+          div[flex one]: paper-input value="{{task.time}}" label="time"
+          div[flex one]: paper-input value="{{task.length}}" label="length"
+          div[flex four]: paper-input-decorator label="task"
+            paper-autogrow-textarea: textarea value="{{task.desc}}"
+          div: core-icon-button icon="cancel" on-tap="{{removeTask}}" index="{{index}}"
+    div[layout vertical center hidden?="{{state != 'finish'}}"]
+      table border="1"
+        template repeat="{{task in tasks}}"
+          tr
+            td width="100"
+              | {{task.time}}
+            td width="50"
+              | {{task.length}}
+            td width="200"
+              | {{task.desc}}
+  coffee:
+    Polymer(
+      tasks: [
+        {
+          time: ""
+          length: ""
+          desc: ""
+        }
+      ]
+      addTask: (event, detail, sender)->
+        @tasks.push (
+          time: ""
+          length: ""
+          desc: ""
+        )
+      removeTask: (event, detail, sender)->
+        index = sender.getAttribute("index")
+        @tasks.splice(index,1)
+    )

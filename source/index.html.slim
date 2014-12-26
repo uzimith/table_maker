@@ -1,0 +1,26 @@
+---
+title: Web Componets
+---
+core-header-panel[flex]
+  core-toolbar.medium-tall[layout vertical]
+    span[flex] Table Maker
+    paper-tabs class="bottom fit" selected="edit"
+      paper-tab name="edit" Edit
+      paper-tab name="finish" Finish
+  .container[layout vertical center]
+    h1 TABLE
+    table-maker
+
+coffee:
+  tabs = document.querySelector('paper-tabs')
+  table = document.querySelector('table-maker')
+  tabs.addEventListener 'core-select', (e)->
+    table.state = tabs.selected
+
+- content_for :import
+  link rel="import" href="/components/font-roboto/roboto.html"
+  link rel="import" href="/components/core-header-panel/core-header-panel.html"
+  link rel="import" href="/components/core-toolbar/core-toolbar.html"
+  link rel="import" href="/components/paper-tabs/paper-tabs.html"
+  link rel="import" href="/components/paper-tabs/paper-tab.html"
+  link rel="import" href="/elements/table-maker.html"

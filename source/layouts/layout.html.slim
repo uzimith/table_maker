@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    title #{data.site.title}
+    == javascript_include_tag "/components/webcomponentsjs/webcomponents.min.js"
+    == stylesheet_link_tag 'style'
+    = yield_content :import
+  body[layout fullbleed vertical unresolved]
+   == yield

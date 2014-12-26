@@ -1,0 +1,75 @@
+<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="/components/core-icon-button/core-icon-button.html">
+<link rel="import" href="/components/paper-input/paper-input.html">
+<link rel="import" href="../components/paper-input/paper-input-decorator.html">
+<link rel="import" href="../components/paper-input/paper-autogrow-textarea.html">
+<polymer-element name="table-maker" attirbutes="state"><template>
+    <style type="text/css">
+      :host {
+        width: 100%; }
+      
+      paper-input {
+        margin: 0 5px; }
+    </style>
+    <div hidden?="{{state != 'edit'}}">
+      <core-icon-button icon="add-circle" on-tap="{{addTask}}"></core-icon-button><template repeat="{{task,index in tasks}}">
+        <div id="layout" layout horizontal end>
+          <div flex one>
+            <paper-input value="{{task.time}}" label="time"></paper-input>
+          </div>
+          <div flex one>
+            <paper-input value="{{task.length}}" label="length"></paper-input>
+          </div>
+          <div flex four>
+            <paper-input-decorator label="task"><paper-autogrow-textarea><textarea value="{{task.desc}}"></textarea></paper-autogrow-textarea></paper-input-decorator>
+          </div>
+          <div>
+            <core-icon-button icon="cancel" on-tap="{{removeTask}}" index="{{index}}"></core-icon-button>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div layout vertical center hidden?="{{state != 'finish'}}">
+      <table border="1">
+        <template repeat="{{task in tasks}}">
+          <tr>
+            <td width="100">
+              {{task.time}}
+            </td>
+            <td width="50">
+              {{task.length}}
+            </td>
+            <td width="200">
+              {{task.desc}}
+            </td>
+          </tr>
+        </template>
+      </table>
+    </div>
+  </template>
+  <script type="text/javascript">
+    Polymer({
+      tasks: [
+        {
+          time: "",
+          length: "",
+          desc: ""
+        }
+      ],
+      addTask: function(event, detail, sender) {
+        return this.tasks.push({
+          time: "",
+          length: "",
+          desc: ""
+        });
+      },
+      removeTask: function(event, detail, sender) {
+        var index;
+        index = sender.getAttribute("index");
+        return this.tasks.splice(index, 1);
+      }
+    });
+    
+  </script>
+</polymer-element>

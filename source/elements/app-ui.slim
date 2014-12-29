@@ -14,12 +14,12 @@ polymer-element name="app-ui" attirbutes="state"
       paper-input
         margin: 0 5px
     div[hidden?="{{state != 'edit'}}"]
-      table-maker tasks="{{tasks}}"
+      table-maker rows="{{rows}}"
     div[hidden?="{{state != 'finish'}}" layout vertical center]
-      table-display tasks="{{tasks}}"
+      table-display rows="{{rows}}"
   coffee:
     Polymer(
-      tasks: [
+      rows: [
         {
           time: ""
           length: ""

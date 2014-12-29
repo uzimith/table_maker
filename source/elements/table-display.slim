@@ -4,16 +4,16 @@ polymer-element name="table-display"
   template
     sass:
     table border="1"
-      template repeat="{{task in tasks}}"
+      template repeat="{{rows}}"
         tr
           td width="100"
-            | {{task.time}}
+            | {{time}}
           td width="50"
-            | {{task.length}}
+            | {{length}}
           td width="200"
-            | {{task.desc}}
+            | {{desc}}
   coffee:
     Polymer(
       publish:
-        tasks: []
+        rows: []
     )

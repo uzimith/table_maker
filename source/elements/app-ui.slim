@@ -1,0 +1,29 @@
+link rel="import" href="../components/polymer/polymer.html"
+link rel="import" href="../components/core-icon-button/core-icon-button.html"
+link rel="import" href="../components/paper-input/paper-input.html"
+link rel="import" href="../components/paper-input/paper-input-decorator.html"
+link rel="import" href="../components/paper-input/paper-autogrow-textarea.html"
+link rel="import" href="table-display.html"
+link rel="import" href="table-maker.html"
+
+polymer-element name="app-ui" attirbutes="state"
+  template
+    sass:
+      \:host
+        width: 100%
+      paper-input
+        margin: 0 5px
+    div[hidden?="{{state != 'edit'}}"]
+      table-maker tasks="{{tasks}}"
+    div[hidden?="{{state != 'finish'}}" layout vertical center]
+      table-display tasks="{{tasks}}"
+  coffee:
+    Polymer(
+      tasks: [
+        {
+          time: ""
+          length: ""
+          desc: ""
+        }
+      ]
+    )

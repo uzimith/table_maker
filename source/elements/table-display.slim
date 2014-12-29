@@ -1,0 +1,19 @@
+link rel="import" href="/components/polymer/polymer.html"
+
+polymer-element name="table-display"
+  template
+    sass:
+    table border="1"
+      template repeat="{{task in tasks}}"
+        tr
+          td width="100"
+            | {{task.time}}
+          td width="50"
+            | {{task.length}}
+          td width="200"
+            | {{task.desc}}
+  coffee:
+    Polymer(
+      publish:
+        tasks: []
+    )

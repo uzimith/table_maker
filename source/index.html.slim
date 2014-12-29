@@ -9,13 +9,13 @@ core-header-panel[flex]
       paper-tab name="finish" Finish
   .container[layout vertical center]
     h1 TABLE
-    table-maker
+    app-ui
 
 coffee:
   tabs = document.querySelector('paper-tabs')
-  table = document.querySelector('table-maker')
+  app = document.querySelector('app-ui')
   tabs.addEventListener 'core-select', (e)->
-    table.state = tabs.selected
+    app.state = tabs.selected
 
 - content_for :import
   link rel="import" href="components/font-roboto/roboto.html"
@@ -23,4 +23,4 @@ coffee:
   link rel="import" href="components/core-toolbar/core-toolbar.html"
   link rel="import" href="components/paper-tabs/paper-tabs.html"
   link rel="import" href="components/paper-tabs/paper-tab.html"
-  link rel="import" href="elements/table-maker.html"
+  link rel="import" href="elements/app-ui.html"
